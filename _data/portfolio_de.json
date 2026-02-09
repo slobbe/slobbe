@@ -1,0 +1,178 @@
+{
+  "name": "Sebastian Lobbe",
+  "label": "Bachelor of Science ETH in Physik",
+  "summary": "Physik-Absolvent und angehender Softwareentwickler.",
+  "contact": {
+    "email": "sebastian@lobbe.cc",
+    "phone": "",
+    "location": "Hagen, Deutschland"
+  },
+  "base_url": "sebastian.lobbe.cc",
+  "social_links": [
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/slobbe"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/slobbe"
+    }
+  ],
+  "work_experience": [
+    {
+      "company": "Dippel-Bau Paderborn",
+      "position": "Helfer im Garten- und Landschaftsbau",
+      "start_date": "09/2024",
+      "end_date": "Heute",
+      "summary": "Unterstuetzung bei Arbeiten im Garten- und Landschaftsbau."
+    },
+    {
+      "company": "ETH Zuerich",
+      "position": "Tutor (Klausurkorrektur)",
+      "url": "https://ethz.ch/",
+      "start_date": "01/2024",
+      "end_date": "02/2024",
+      "summary": "Klausurkorrektur fuer Mathematical Methods in Physics I."
+    }
+  ],
+  "other_experience": [
+    {
+      "organization": "TU Dortmund",
+      "position": "Akademieschueler",
+      "url": "https://www.tu-dortmund.de/",
+      "start_date": "02/2017",
+      "end_date": "",
+      "summary": "Teilnahme an der Winterakademie der TU Dortmund.",
+      "highlights": []
+    },
+    {
+      "organization": "C.D. Waelzholz",
+      "position": "Praktikant",
+      "url": "https://www.waelzholz.com/",
+      "start_date": "06/2016",
+      "end_date": "07/2016",
+      "summary": "Praktikum in der Metallverarbeitung.",
+      "highlights": []
+    },
+    {
+      "organization": "Europa School in Bournemouth",
+      "position": "Sprachschueler",
+      "url": "https://europa-school.co.uk/",
+      "start_date": "07/2015",
+      "end_date": "",
+      "summary": "Englischkurs in Bournemouth.",
+      "highlights": []
+    }
+  ],
+  "education": [
+    {
+      "institution": "FernUniversitaet in Hagen",
+      "location": "Hagen, Deutschland",
+      "url": "https://www.fernuni-hagen.de/",
+      "start_date": "10/2025",
+      "end_date": "Heute",
+      "degree": "Masterstudium Praktische Informatik",
+      "grade": "",
+      "graduation_date": "",
+      "comments": []
+    },
+    {
+      "institution": "FernUniversitaet in Hagen",
+      "location": "Hagen, Deutschland",
+      "url": "https://www.fernuni-hagen.de/",
+      "start_date": "04/2025",
+      "end_date": "08/2025",
+      "degree": "Akademiestudium Informatik",
+      "grade": "",
+      "graduation_date": "",
+      "comments": [
+        "Uebergangssemester zur Qualifikation fuer den Master.",
+        "Kurse: OOP und technische/theoretische Informatik."
+      ]
+    },
+    {
+      "institution": "ETH Zuerich",
+      "location": "Zuerich, Schweiz",
+      "url": "https://ethz.ch/",
+      "start_date": "10/2021",
+      "end_date": "08/2024",
+      "degree": "Masterstudium Physik",
+      "grade": "",
+      "graduation_date": "",
+      "comments": [
+        "Schwerpunkt: Datenanalyse und Teilchenphysik"
+      ]
+    },
+    {
+      "institution": "ETH Zuerich",
+      "location": "Zuerich, Schweiz",
+      "url": "https://ethz.ch/",
+      "start_date": "09/2018",
+      "end_date": "10/2021",
+      "degree": "Bachelor of Science in Physik",
+      "grade": "",
+      "graduation_date": "",
+      "comments": [
+        "Schwerpunkt: Praktika, Datenanalyse, Quantenmechanik und Elektrodynamik"
+      ]
+    },
+    {
+      "institution": "Hildegardis-Schule Hagen",
+      "location": "Hagen, Deutschland",
+      "url": "https://hildegardis-schule.de/",
+      "start_date": "08/2010",
+      "end_date": "07/2018",
+      "degree": "Abitur",
+      "grade": "",
+      "graduation_date": "",
+      "comments": [
+        "Leistungskurse: Mathematik und Physik"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Python",
+      "proficiency": 75,
+      "proficiency_label": "Fortgeschritten"
+    },
+    {
+      "name": "LaTeX, Markdown",
+      "proficiency": 75,
+      "proficiency_label": "Fortgeschritten"
+    },
+    {
+      "name": "HTML, CSS, JavaScript, TypeScript",
+      "proficiency": 50,
+      "proficiency_label": "Gut"
+    },
+    {
+      "name": "Java, Go",
+      "proficiency": 10,
+      "proficiency_label": "Grundkenntnisse"
+    },
+    {
+      "name": "Linux, Git",
+      "proficiency": 50,
+      "proficiency_label": "Gut"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Deutsch",
+      "fluency": "Muttersprache"
+    },
+    {
+      "language": "Englisch",
+      "fluency": "Fliessend"
+    },
+    {
+      "language": "Spanisch",
+      "fluency": "Grundkenntnisse"
+    },
+    {
+      "language": "Franzoesisch",
+      "fluency": "Grundkenntnisse"
+    }
+  ]
+}

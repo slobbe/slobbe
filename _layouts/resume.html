@@ -1,0 +1,397 @@
+{% assign portfolio_key = 'portfolio_' | append: page.lang %}
+{% assign portfolio = site.data[portfolio_key] %}
+{% assign t = site.data.i18n[page.lang] %}
+{% if page.lang == 'de' %}
+  {% assign canonical_path = '/de/resume/' %}
+  {% assign switch_url = '/resume/' %}
+  {% assign og_alt_locale = 'en_US' %}
+{% else %}
+  {% assign canonical_path = '/resume/' %}
+  {% assign switch_url = '/de/resume/' %}
+  {% assign og_alt_locale = 'de_DE' %}
+{% endif %}
+<!DOCTYPE html>
+<html lang="{{ t.lang_code }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{ portfolio.name }} - {{ t.resume_page_title }}</title>
+    <meta name="description" content="{{ portfolio.name }} · {{ portfolio.summary }}" />
+    <meta name="author" content="{{ portfolio.name }}" />
+    <meta name="robots" content="{{ page.robots | default: 'index,follow,max-image-preview:large' }}" />
+    <link rel="canonical" href="https://{{ portfolio.base_url }}{{ canonical_path }}" />
+    <link rel="alternate" hreflang="en" href="https://{{ portfolio.base_url }}/resume/" />
+    <link rel="alternate" hreflang="de" href="https://{{ portfolio.base_url }}/de/resume/" />
+    <link rel="alternate" hreflang="x-default" href="https://{{ portfolio.base_url }}/resume/" />
+    <meta property="og:title" content="{{ portfolio.name }} - {{ t.resume_page_title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://{{ portfolio.base_url }}{{ canonical_path }}" />
+    <meta property="og:description" content="{{ portfolio.name }} · {{ portfolio.summary }}" />
+    <meta property="og:site_name" content="{{ portfolio.name }}" />
+    <meta property="og:locale" content="{{ t.og_locale }}" />
+    <meta property="og:locale:alternate" content="{{ og_alt_locale }}" />
+    {% if portfolio.image_path and portfolio.image_path != "" %}
+    <meta property="og:image" content="https://{{ portfolio.base_url }}/{{ portfolio.image_path }}" />
+    <meta property="og:image:alt" content="{{ portfolio.name }} profile image" />
+    {% endif %}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ portfolio.name }} - {{ t.resume_page_title }}" />
+    <meta name="twitter:description" content="{{ portfolio.name }} · {{ portfolio.summary }}" />
+    <meta name="twitter:url" content="https://{{ portfolio.base_url }}{{ canonical_path }}" />
+    {% if portfolio.image_path and portfolio.image_path != "" %}
+    <meta name="twitter:image" content="https://{{ portfolio.base_url }}/{{ portfolio.image_path }}" />
+    {% endif %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/modern_normalize.css" />
+    <link rel="stylesheet" href="/css/html5bp.css" />
+    <link rel="stylesheet" href="/css/main.css?v=20260208" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#10181b" />
+    <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": {{ portfolio.name | jsonify }},
+        "url": {{ "https://" | append: portfolio.base_url | append: canonical_path | jsonify }},
+        "description": {{ portfolio.summary | default: portfolio.name | jsonify }},
+        "jobTitle": {{ portfolio.label | default: "" | jsonify }},
+        "inLanguage": {{ t.lang_code | jsonify }},
+        {% if portfolio.contact.email and portfolio.contact.email != "" %}
+        "email": {{ "mailto:" | append: portfolio.contact.email | jsonify }},
+        {% endif %}
+        {% if portfolio.contact.location and portfolio.contact.location != "" %}
+        "homeLocation": {
+          "@type": "Place",
+          "name": {{ portfolio.contact.location | jsonify }}
+        },
+        {% endif %}
+        "sameAs": [{% for link in portfolio.social_links %}{{ link.url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}]
+      }
+    </script>
+  </head>
+
+  <body>
+    <a class="lang-toggle" href="{{ switch_url }}">{{ t.switch_to }}</a>
+    <header class="page-header">
+      <div class="container">
+        <div class="header-top flex-responsive">
+          {% if portfolio.image_path and portfolio.image_path != "" %}
+          <img
+            class="header-image"
+            width="256"
+            height="256"
+            src="{{ portfolio.image_path }}"
+            alt="{{ portfolio.name }} profile image"
+          />
+          {% endif %}
+          <div class="header-info">
+            <h1>{{ portfolio.name }}</h1>
+            {% if portfolio.label and portfolio.label != "" %}
+            <h2 class="header-label">{{ portfolio.label }}</h2>
+            {% endif %}
+            {% assign has_email = false %}
+            {% assign has_phone = false %}
+            {% assign has_location = false %}
+            {% if portfolio.contact.email and portfolio.contact.email != "" %}{% assign has_email = true %}{% endif %}
+            {% if portfolio.contact.phone and portfolio.contact.phone != "" %}{% assign has_phone = true %}{% endif %}
+            {% if portfolio.contact.location and portfolio.contact.location != "" %}{% assign has_location = true %}{% endif %}
+            {% if has_email or has_phone or has_location %}
+            <address>
+              <ul class="inline-list flex-responsive">
+                {% if portfolio.contact.email and portfolio.contact.email != "" %}
+                <li>
+                  <a href="mailto:{{ portfolio.contact.email }}">{{ portfolio.contact.email }}</a>
+                </li>
+                {% endif %}
+                {% if portfolio.contact.phone and portfolio.contact.phone != "" %}
+                <li>
+                  <a href="tel:+{{ portfolio.contact.phone | replace: '-', '' }}">{{ portfolio.contact.phone }}</a>
+                </li>
+                {% endif %}
+                {% if portfolio.contact.location and portfolio.contact.location != "" %}
+                <li>{{ portfolio.contact.location }}</li>
+                {% endif %}
+              </ul>
+            </address>
+            {% endif %}
+            {% if portfolio.social_links and portfolio.social_links.size > 0 %}
+            <ul class="inline-list flex-responsive">
+              {% for link in portfolio.social_links %}
+              <li>
+                <a href="{{ link.url }}" rel="noopener noreferrer" aria-label="{{ link.label }}" class="link-with-icon">
+                  {{ link.label }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            {% if portfolio.summary and portfolio.summary != "" %}
+            <p class="header-summary">{{ portfolio.summary }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="container">
+        <main>
+          {% if portfolio.work_experience and portfolio.work_experience.size > 0 %}
+          <section>
+            <h2 class="section-heading">{{ t.work_experience }}</h2>
+            {% for job in portfolio.work_experience %}
+            <section>
+              <h3>
+                {% if job.url and job.url != "" %}
+                {{ job.position }} {{ t.at }} <a href="{{ job.url }}">{{ job.company }}</a>
+                {% else %}
+                {{ job.position }} {{ t.at }} {{ job.company }}
+                {% endif %}
+              </h3>
+              {% if job.start_date and job.start_date != "" %}
+              <p class="section-label">
+                {{ job.start_date }}{% if job.end_date and job.end_date != "" %}&ndash;{{ job.end_date }}{% endif %}
+              </p>
+              {% endif %}
+              {% if job.summary and job.summary != "" %}
+              <p>{{ job.summary }}</p>
+              {% endif %}
+              {% if job.highlights and job.highlights.size > 0 %}
+              <ul>
+                {% for highlight in job.highlights %}
+                <li>{{ highlight }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </section>
+            {% endfor %}
+          </section>
+          {% endif %}
+
+          {% if portfolio.projects and portfolio.projects.size > 0 %}
+          <section>
+            <h2 class="section-heading">{{ t.projects }}</h2>
+            {% for project in portfolio.projects %}
+            <section>
+              <h3>
+                {% if project.url and project.url != "" %}
+                <a href="{{ project.url }}">{{ project.title }}</a>
+                {% else %}
+                {{ project.title }}
+                {% endif %}
+              </h3>
+              {% if project.summary and project.summary != "" %}
+              <p>{{ project.summary }}</p>
+              {% endif %}
+              {% if project.highlights and project.highlights.size > 0 %}
+              <ul>
+                {% for highlight in project.highlights %}
+                <li>{{ highlight }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+              {% if project.images and project.images.size > 0 %}
+              <div class="gallery main-gallery">
+                {% for img in project.images %}
+                <figure>
+                  <img width="600" height="338" src="{{ img.img_path }}" alt="{{ img.caption }}" />
+                  <figcaption>{{ img.caption }}</figcaption>
+                </figure>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </section>
+            {% endfor %}
+          </section>
+          {% endif %}
+
+          {% if portfolio.other_experience and portfolio.other_experience.size > 0 %}
+          <section>
+            <h2 class="section-heading">{{ t.other_experience }}</h2>
+            {% for exp in portfolio.other_experience %}
+            <section>
+              <h3>
+                {% if exp.url and exp.url != "" %}
+                {{ exp.position }} {{ t.at }} <a href="{{ exp.url }}">{{ exp.organization }}</a>
+                {% else %}
+                {{ exp.position }} {{ t.at }} {{ exp.organization }}
+                {% endif %}
+              </h3>
+              {% if exp.start_date and exp.start_date != "" %}
+              <p class="section-label">
+                {{ exp.start_date }}{% if exp.end_date and exp.end_date != "" %}&ndash;{{ exp.end_date }}{% endif %}
+              </p>
+              {% endif %}
+              {% if exp.summary and exp.summary != "" %}
+              <p>{{ exp.summary }}</p>
+              {% endif %}
+              {% if exp.highlights and exp.highlights.size > 0 %}
+              <ul>
+                {% for highlight in exp.highlights %}
+                <li>{{ highlight }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </section>
+            {% endfor %}
+          </section>
+          {% endif %}
+
+          {% if portfolio.references and portfolio.references.size > 0 %}
+          <section>
+            <h2 class="section-heading">{{ t.references }}</h2>
+            {% for ref in portfolio.references %}
+            <section>
+              {% if ref.name and ref.name != "" %}
+              <h3>{{ ref.name }}</h3>
+              {% endif %}
+              {% if ref.relation and ref.relation != "" %}
+              <p class="section-label">{{ ref.relation }}</p>
+              {% endif %}
+              {% if ref.reference and ref.reference != "" %}
+              <blockquote>{{ ref.reference }}</blockquote>
+              {% endif %}
+            </section>
+            {% endfor %}
+          </section>
+          {% endif %}
+        </main>
+
+        <aside>
+          {% if portfolio.education and portfolio.education.size > 0 %}
+          <section>
+            <h2 class="section-heading">{{ t.education }}</h2>
+            {% for edu in portfolio.education %}
+            <section>
+              <h3>
+                {% if edu.url and edu.url != "" %}
+                <a href="{{ edu.url }}">{{ edu.institution }}</a>
+                {% else %}
+                {{ edu.institution }}
+                {% endif %}
+              </h3>
+              {% assign has_edu_start = false %}
+              {% assign has_edu_end = false %}
+              {% assign has_edu_location = false %}
+              {% if edu.start_date and edu.start_date != "" %}{% assign has_edu_start = true %}{% endif %}
+              {% if edu.end_date and edu.end_date != "" %}{% assign has_edu_end = true %}{% endif %}
+              {% if edu.location and edu.location != "" %}{% assign has_edu_location = true %}{% endif %}
+              {% if has_edu_start or has_edu_location %}
+              <p class="section-label">
+                {% if has_edu_start %}
+                {{ edu.start_date }}{% if has_edu_end %}&ndash;{{ edu.end_date }}{% endif %}
+                {% endif %}
+                {% if has_edu_start and has_edu_location %} | {% endif %}
+                {% if has_edu_location %}{{ edu.location }}{% endif %}
+              </p>
+              {% endif %}
+              {% if edu.degree and edu.degree != "" %}
+              <h4>{{ edu.degree }}</h4>
+              {% endif %}
+              {% if edu.comments and edu.comments.size > 0 %}
+              <ul>
+                {% for comment in edu.comments %}
+                <li>{{ comment }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+              {% assign has_edu_grade = false %}
+              {% assign has_edu_graduation_date = false %}
+              {% if edu.grade and edu.grade != "" %}{% assign has_edu_grade = true %}{% endif %}
+              {% if edu.graduation_date and edu.graduation_date != "" %}{% assign has_edu_graduation_date = true %}{% endif %}
+              {% if has_edu_grade or has_edu_graduation_date %}
+              <p>
+                {% if edu.grade and edu.grade != "" %}<span class="block">{{ t.grade }}: {{ edu.grade }}</span>{% endif %}
+                {% if edu.graduation_date and edu.graduation_date != "" %}<span class="block">{{ t.graduation_date }}: {{ edu.graduation_date }}</span>{% endif %}
+              </p>
+              {% endif %}
+            </section>
+            {% endfor %}
+          </section>
+          {% endif %}
+
+          {% if portfolio.skills and portfolio.skills.size > 0 %}
+          <section>
+            <h2 class="section-heading">{{ t.skills }}</h2>
+            <ul class="unstyled-list">
+              {% for skill in portfolio.skills %}
+              <li>
+                <h3>{{ skill.name }}</h3>
+                <div class="skill-bar">
+                  <div
+                    class="skill-bar-fill w-{{ skill.proficiency }}"
+                    role="meter"
+                    aria-valuenow="{{ skill.proficiency }}"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <span class="skill-bar-label">{{ skill.proficiency_label }}</span>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </section>
+          {% endif %}
+
+          {% if portfolio.languages and portfolio.languages.size > 0 %}
+          <section>
+            <h2 class="section-heading">{{ t.languages }}</h2>
+            <ul class="unstyled-list">
+              {% for lang in portfolio.languages %}
+              <li>
+                <h3>{{ lang.language }}</h3>
+                <p class="section-label">{{ lang.fluency }}</p>
+              </li>
+              {% endfor %}
+            </ul>
+          </section>
+          {% endif %}
+
+          {% if portfolio.interests and portfolio.interests.size > 0 %}
+          <section>
+            <h2 class="section-heading">{{ t.interests }}</h2>
+            {% for interest in portfolio.interests %}
+            <section>
+              <h3>{{ interest.name }}</h3>
+              {% if interest.summary and interest.summary != "" %}
+              <p>{{ interest.summary }}</p>
+              {% endif %}
+              {% if interest.images and interest.images.size > 0 %}
+              <div class="gallery side-gallery">
+                {% for img in interest.images %}
+                <figure>
+                  <img width="600" height="338" src="{{ img.img_path }}" alt="{{ img.caption }}" />
+                  <figcaption>{{ img.caption }}</figcaption>
+                </figure>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </section>
+            {% endfor %}
+          </section>
+          {% endif %}
+        </aside>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>&copy; {{ site.time | date: '%Y' }} {{ portfolio.name }}.<br />{{ t.all_rights_reserved }}.</p>
+      </div>
+    </footer>
+
+    <script src="/js/app.js"></script>
+  </body>
+</html>

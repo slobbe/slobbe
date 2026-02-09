@@ -1,0 +1,11 @@
+Site: Sebastian Lobbe
+URL: https://sebastian.lobbe.cc/
+Purpose: Personal resume and portfolio website.
+
+Canonical pages:
+- https://sebastian.lobbe.cc/
+- https://sebastian.lobbe.cc/resume/
+- https://sebastian.lobbe.cc/de/
+- https://sebastian.lobbe.cc/de/resume/
+
+Contact: mailto:sebastian@lobbe.cc
