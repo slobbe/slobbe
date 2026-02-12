@@ -16,7 +16,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>{{ portfolio.name }} - {{ t.resume_page_title }}</title>
+    <title>{{ t.resume_page_title }} · {{ portfolio.name }}</title>
     <meta name="description" content="{{ portfolio.name }} · {{ portfolio.summary }}" />
     <meta name="author" content="{{ portfolio.name }}" />
     <meta name="robots" content="{{ page.robots | default: 'index,follow,max-image-preview:large' }}" />
@@ -24,7 +24,7 @@
     <link rel="alternate" hreflang="en" href="https://{{ portfolio.base_url }}/resume/" />
     <link rel="alternate" hreflang="de" href="https://{{ portfolio.base_url }}/de/resume/" />
     <link rel="alternate" hreflang="x-default" href="https://{{ portfolio.base_url }}/resume/" />
-    <meta property="og:title" content="{{ portfolio.name }} - {{ t.resume_page_title }}" />
+    <meta property="og:title" content="{{ t.resume_page_title }} · {{ portfolio.name }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://{{ portfolio.base_url }}{{ canonical_path }}" />
     <meta property="og:description" content="{{ portfolio.name }} · {{ portfolio.summary }}" />
@@ -36,7 +36,7 @@
     <meta property="og:image:alt" content="{{ portfolio.name }} profile image" />
     {% endif %}
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="{{ portfolio.name }} - {{ t.resume_page_title }}" />
+    <meta name="twitter:title" content="{{ t.resume_page_title }} · {{ portfolio.name }}" />
     <meta name="twitter:description" content="{{ portfolio.name }} · {{ portfolio.summary }}" />
     <meta name="twitter:url" content="https://{{ portfolio.base_url }}{{ canonical_path }}" />
     {% if portfolio.image_path and portfolio.image_path != "" %}
