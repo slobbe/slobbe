@@ -274,13 +274,16 @@
             <h2 class="section-heading">{{ t.education }}</h2>
             {% for edu in portfolio.education %}
             <section>
-              <h3>
+              {% if edu.degree and edu.degree != "" %}
+              <h3>{{ edu.degree }}</h3>
+              {% endif %}
+              <h4>
                 {% if edu.url and edu.url != "" %}
                 <a href="{{ edu.url }}">{{ edu.institution }}</a>
                 {% else %}
                 {{ edu.institution }}
                 {% endif %}
-              </h3>
+              </h4>
               {% assign has_edu_start = false %}
               {% assign has_edu_end = false %}
               {% assign has_edu_location = false %}
@@ -295,9 +298,6 @@
                 {% if has_edu_start and has_edu_location %} | {% endif %}
                 {% if has_edu_location %}{{ edu.location }}{% endif %}
               </p>
-              {% endif %}
-              {% if edu.degree and edu.degree != "" %}
-              <h4>{{ edu.degree }}</h4>
               {% endif %}
               {% if edu.comments and edu.comments.size > 0 %}
               <ul>
