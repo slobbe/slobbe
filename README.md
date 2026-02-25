@@ -1,9 +1,6 @@
 # Hi, I'm Sebastian
 
-![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white&style=flat-square)
-![Go](https://img.shields.io/badge/-Go-00ADD8?logo=go&logoColor=white&style=flat-square)
-![TypeScript](https://img.shields.io/badge/-TypeScript-blue?logo=typescript&logoColor=white&style=flat-square)
-![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black&style=flat-square)
+![Skills](https://skillicons.dev/icons?i=py,go,ts,js,html,css,tailwind,react,bash,linux,git,docker,latex)
 
 ## Current projects
 
